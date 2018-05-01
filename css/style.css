@@ -1,0 +1,21 @@
+body{
+  margin: 0;
+  padding-left: 300px;
+  padding-right: 300px;
+  padding-top: 100px;
+}
+.game{
+  /* background-color: green; */
+  align: center;
+  height: 600px;
+  width: 600px;
+}
+.gameclick{
+  border: 1px solid red;
+  height: 193px;
+  width: 193px;
+  display: inline-block;
+  overflow: auto;
+  font-size: 120px;
+  text-align: center;
+}
