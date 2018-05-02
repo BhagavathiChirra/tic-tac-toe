@@ -6,6 +6,10 @@ const game = {
     null,null,null,
     null,null,null
   ],
+
+  gameOver: false,
+  noOfClicks: 0,
+
   winningChances : [
     [0,1,2],
     [3,4,5],
@@ -32,27 +36,31 @@ const game = {
       }
       if(winX == 3){
         return win;
-        //alert(" X is the winner");
-        //this.visualDisplayWin();
-        // $('#message').html('Winner is ')
-        //this.startNewGame();
       }
       else if(winO == 3){
-        //alert("O is the winner");
-        //this.startNewGame();
         return win;
       }
     }
   },
   startNewGame : function(){
-    $("div >div").html("");
+    // debugger;
+    $("#box > div").html("").removeClass("winSquare");
+    // $("div#game > div");
+    game.gameBoard = [
+      null,null,null,
+      null,null,null,
+      null,null,null
+    ];
+    game.player = "O";
+    game.noOfClicks = 0;
+    game.gameOver = false;
   }
 };
 
 $(document).ready(function(){
-  $("div > div").click(function(event) {
+  $("#box > div").click(function(event) {
     game.id = "#"+this.id;
-    //debugger;
+    // checking for empty
     if(!$(game.id).html()){
       if(game.player == "O")
       {
@@ -65,19 +73,35 @@ $(document).ready(function(){
         game.player = "O";
         game.gameBoard[this.id] = "O";
       }
-      const $gameIsWon = game.winGame();
-      if($gameIsWon){
-        visualDisplayWin($gameIsWon);
+      // getting winning row
+      const gameIsWon = game.winGame();
+      if(gameIsWon){
+        game.gameOver = true;
+        // visually displaying winning row
+        visualDisplayWin(gameIsWon);
+        // starting new game after winning one game
         playAgain();
       }
+      game.noOfClicks +=1;
     }
+    // starting new game after tie
+    if(game.noOfClicks == 9){
+      playAgain();
+    }
+     // empty check
   });
   function visualDisplayWin(win){
     for(i=0; i< win.length; i++){
-      $(`#${win[i]}`).css({"background-color":"pink"});
+      $(`#${win[i]}`).addClass('winSquare');  //css({"background-color":"pink"});
     }
   }
   function playAgain(){
-    //$(".game").hide();
+    $('#box2').show();
+    $("#box2").addClass("playAgain");
   }
+  $("#btnGameOver").click(function( event ){
+    // event.stopPropagation();  // prevent click event from passing through to game board
+    game.startNewGame();
+    $("#box2").hide();
+  });
 });

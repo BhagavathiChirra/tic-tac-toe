@@ -1,8 +1,15 @@
+@import url(http://fonts.googleapis.com/css?family=Oleo+Script);
 body{
   margin: 0;
   padding-left: 300px;
   padding-right: 300px;
-  padding-top: 100px;
+  /* padding-top: 50px; */
+}
+h1{
+  text-align: center;
+  font-size: 50px;
+  font-family: 'Oleo Script', cursive;
+  color: blue;
 }
 .game{
   /* background-color: green; */
@@ -18,4 +25,37 @@ body{
   overflow: auto;
   font-size: 120px;
   text-align: center;
+  cursor: pointer;
+  line-height: 193px;
+}
+.gameOver{
+  display: none;
+}
+
+.winSquare{
+  background-color: pink;
+}
+
+.playAgain{
+  height: 600px;
+  width: 595px;
+  background-color: rgba(175, 167, 215, 0.5);
+  position: absolute;
+  top: 133px;
+  text-align: center;
+}
+span{
+  font-size: 50px;
+}
+.playAgainDiv{
+  padding: 100px;
+}
+.button{
+  padding:10px;
+  border:4px solid green;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  color: red;
+  font-size: 30px;
+  cursor: pointer;
 }
