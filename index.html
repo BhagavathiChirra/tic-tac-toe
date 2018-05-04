@@ -6,14 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>tic-tac-toe</title>
   <script src="js/jquery.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/unbeatable.js"></script>
   <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
-
+<h1>tic tac toe</h1>
   <div class="game" id="box">
-    <h1>tic tac toe</h1>
     <div class="gameclick" id="0"></div>
     <div class="gameclick" id="1"></div>
     <div class="gameclick" id="2"></div>
@@ -27,11 +26,15 @@
   <div class="gameOver" id="box2">
     <div class="playAgainDiv">
       <span>Game Over!</span><br/><br/><br/><br/>
-      <input type="button" class="button" value="Want to Play Again?" id="btnGameOver"></input>
+      <input type="button" class="button" value="Want to Play Again?" id="btnGameOver"></input><br/><br/>
+      <input type="button" class="button" value="Want to Exit?" id="exitGame"></input>
     </div>
-
   </div>
-
+  <div id="startingBox" class="playAgain playAgainDiv">
+    <span>Choose what You like </span><br/><br/>
+    <input type="button" class="button" value="X" id="chosenX"></input><br/><br/>
+    <input type="button" class="button" value="O" id="chosenO"></input>
+  </div>
 </body>
 </script>
 </html>

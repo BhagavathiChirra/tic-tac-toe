@@ -20,6 +20,8 @@ const game = {
     [2,4,6],
     [0,4,8]
   ],
+  noOfWinsOfX : 0,
+  noOfWinsOfO : 0,
   winGame : function(){
     for(i=0; i<this.winningChances.length; i++)
     {
@@ -46,6 +48,7 @@ const game = {
     // debugger;
     $("#box > div").html("").removeClass("winSquare");
     // $("div#game > div");
+    game.reset
     game.gameBoard = [
       null,null,null,
       null,null,null,
@@ -58,6 +61,18 @@ const game = {
 };
 
 $(document).ready(function(){
+  // starting div to let the user to choose "X" or "O" or "Pic"
+  // click event for divs
+  $("#chosenX").click(function(event){
+    $('#startingBox').hide();
+    $('#box').show();
+  });
+  $('#chosenO').click(function(event){
+    $('#startingBox').hide();
+    $('#box').show();
+    game.player = "X";
+  });
+
   $("#box > div").click(function(event) {
     game.id = "#"+this.id;
     // checking for empty
@@ -79,8 +94,11 @@ $(document).ready(function(){
         game.gameOver = true;
         // visually displaying winning row
         visualDisplayWin(gameIsWon);
+        if(game.player == "X"){
+          game.noOfWinsOfX +=1;
+        }else game.noOfWinsOfO +=1;
         // starting new game after winning one game
-        playAgain();
+        playAgain(game.player);
       }
       game.noOfClicks +=1;
     }
@@ -90,18 +108,33 @@ $(document).ready(function(){
     }
      // empty check
   });
+  // displaying pattern
   function visualDisplayWin(win){
     for(i=0; i< win.length; i++){
       $(`#${win[i]}`).addClass('winSquare');  //css({"background-color":"pink"});
     }
   }
-  function playAgain(){
+  // opening up play again div
+  function playAgain(player){
     $('#box2').show();
+    if(player == "X"){
+      $('.gameOver >div>span').html(`gameOver! <br/> "${player}" Won the game for ${game.noOfWinsOfX} time/s`);
+    }else $('.gameOver >div>span').html(`gameOver! <br/> "${player}" Won the game for ${game.noOfWinsOfO} time/s`);
     $("#box2").addClass("playAgain");
   }
+  // starting new game upon clicking
   $("#btnGameOver").click(function( event ){
     // event.stopPropagation();  // prevent click event from passing through to game board
     game.startNewGame();
     $("#box2").hide();
   });
+  $("#exitGame").click(function(event){
+    //location.reload();
+    game.noOfWinsOfX = 0;
+    game.noOfWinsOfO = 0;
+    game.startNewGame();
+    $("#box2").hide();
+    $('#box').hide();
+    $("#startingBox").show();
+  })
 });

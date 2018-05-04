@@ -13,9 +13,9 @@ h1{
 }
 .game{
   /* background-color: green; */
-  align: center;
   height: 600px;
   width: 600px;
+  display: none;
 }
 .gameclick{
   border: 1px solid red;
