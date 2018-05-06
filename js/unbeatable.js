@@ -441,6 +441,8 @@ $(document).ready(function(){
 
   };
 //***************
+
+// Checking for win or draw
   const boardCheck = function(){
     // getting winning row
     const gameIsWon = game.winGame();
